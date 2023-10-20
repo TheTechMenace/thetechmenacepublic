@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <record model="ir.actions.server" id="action_get_analytic_line_items_for_invoice">
+            <field name="name">Get Line Items for Invoice</field>
+            <field name="model_id" ref="account.model_account_analytic_line"/>
+            <field name="binding_model_id" ref="account.model_account_analytic_line"/>
+            <field name="state">code</field>
+            <field name="binding_view_types">list</field>
+            <field name="code">
+                records.create_so_from_analytic_lines()
+            </field>
+        </record>
+
+</odoo>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.actions.act_window" id="classroom_assignment_action">
+            <field name="name">Assignment</field>
+            <field name="res_model">classroom.assignment</field>
+            <field name="view_mode">tree,form,pivot,kanban,graph,calendar</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No Assignments yet!
+                </p>
+            </field> 
+        </record>
+
+        <record model="ir.actions.act_window" id="classroom_student_action">
+            <field name="name">Students</field>
+            <field name="res_model">classroom.student</field>
+            <field name="view_mode">tree,form,pivot,graph,kanban</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No Students yet!
+                </p>
+            </field> 
+        </record>
+
+        <record model="ir.actions.act_window" id="classroom_grade_action">
+            <field name="name">Grades</field>
+            <field name="res_model">classroom.grade</field>
+            <field name="view_mode">tree,pivot,graph</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No Grades yet!
+                </p>
+            </field> 
+        </record>
+
+        <record model="ir.actions.act_window" id="classroom_class_action">
+            <field name="name">Classes</field>
+            <field name="res_model">classroom.class</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No Classes yet!
+                </p>
+            </field> 
+        </record>
+
+        <record model="ir.actions.act_window" id="classroom_unit_action">
+            <field name="name">Units</field>
+            <field name="res_model">classroom.unit</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No Units yet!
+                </p>
+            </field> 
+        </record>
+
+
+        
+        <menuitem name="Teacher Management"
+                  id="menu_teacher_management"
+                  web_icon="class_management,static/description/icon.png"
+                  
+                  sequence="1"/>
+
+        <menuitem name="Assignments"
+                  id="menu_teacher_management_assignments" 
+                  parent="menu_teacher_management"
+                  sequence="10"
+                  action="classroom_assignment_action"/>
+                  
+        <menuitem name="Students"
+                  id="menu_teacher_management_students" 
+                  parent="menu_teacher_management"
+                  sequence="20"
+                  action="classroom_student_action"/>
+
+        <menuitem name="Grades"
+                  id="menu_teacher_management_grades" 
+                  parent="menu_teacher_management"
+                  sequence="30"
+                  action="classroom_grade_action"/>
+
+        <menuitem name="Classes"
+                  id="menu_teacher_management_classes" 
+                  parent="menu_teacher_management"
+                  sequence="40"
+                  action="classroom_class_action"
+                  />
+        <menuitem name="Units"
+                  id="menu_teacher_management_units" 
+                  parent="menu_teacher_management"
+                  sequence="50"
+                  action="classroom_unit_action"
+                  />
+
+    </data>
+</odoo>

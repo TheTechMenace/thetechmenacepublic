@@ -1,0 +1,365 @@
+<odoo>
+  <data>
+    <record id="view_workout_session_tree" model="ir.ui.view">
+      <field name="name">workout.session.tree</field>
+      <field name="model">workout.session</field>
+      <field name="arch" type="xml">
+        <tree string="Sessions">
+          <field name="date" optional="show" />
+          <field name='start_time' optional="show" />
+          <field name='end_time' optional="show" />
+
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_workout_session_form" model="ir.ui.view">
+      <field name="name">workout.session.form</field>
+      <field name="model">workout.session</field>
+      <field name="arch" type="xml">
+        <form string="Sessions">
+          <sheet>
+            <div class="oe_title">
+              <h1>
+                <field name='date' />
+              </h1>
+            </div>
+            <group>
+              <group>
+                <field name='start_time'/>
+                <field name='end_time'/>
+              </group>
+              <group>
+              </group>
+
+              <field name='event_ids'/>
+              <button name="generate_workout" type="object" string="Generate Workout" class="oe_highlight"/>
+
+            </group>
+          </sheet>
+
+          <div class="oe_chatter">
+            <field name="message_follower_ids" />
+            <field name="message_ids" />
+          </div>
+
+        </form>
+      </field>
+    </record>
+
+
+    <record id="view_workout_event_tree" model="ir.ui.view">
+      <field name="name">workout.event.tree</field>
+      <field name="model">workout.event</field>
+      <field name="arch" type="xml">
+        <tree string="Event">
+          <field name="sequence" widget="handle"/>
+          <field name="exerciser_id" optional="show" />
+          <field name='equipment_id' optional="show" />
+          <field name='exercise_type_id' optional="show" />
+          <field name='session_id' optional="show" />
+
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_workout_event_form" model="ir.ui.view">
+      <field name="name">workout.event.form</field>
+      <field name="model">workout.event</field>
+      <field name="arch" type="xml">
+        <form string="Event">
+          <sheet>
+            <div class="oe_title">
+              <h1>
+                <field name='exerciser_id' />
+              </h1>
+            </div>
+            <group>
+              <group>
+                <field name='equipment_id'/>
+                <field name='exercise_type_id'/>
+                <field name='session_id'/>
+
+              </group>
+              <group>
+              </group>
+
+              <field name='set_ids'/>
+            </group>
+          </sheet>
+
+          <div class="oe_chatter">
+            <field name="message_follower_ids" />
+            <field name="message_ids" />
+          </div>
+
+        </form>
+      </field>
+    </record>
+
+
+    <record id="view_workout_exercise_type_tree" model="ir.ui.view">
+      <field name="name">workout.exercise.type.tree</field>
+      <field name="model">workout.exercise.type</field>
+      <field name="arch" type="xml">
+        <tree string="Exercise Type" editable="top">
+          <field name="sequence" widget="handle"/>
+          <field name="name" optional="show" />
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_workout_set_tree" model="ir.ui.view">
+      <field name="name">workout.set.tree</field>
+      <field name="model">workout.set</field>
+      <field name="arch" type="xml">
+        <tree string="Sets">
+          <field name="set_count" optional="show" />
+          <field name='reps_count' optional="show" />
+          <field name='weight' optional="show" />
+          <field name='event_id' optional="show" />
+          <field name='is_done' optional="show" widget='boolean_toggle' />
+
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_workout_set_form" model="ir.ui.view">
+      <field name="name">workout.set.form</field>
+      <field name="model">workout.set</field>
+      <field name="arch" type="xml">
+        <form string="Set">
+          <sheet>
+            <div class="oe_title">
+              <h1>
+                <field name='event_id' />
+              </h1>
+            </div>
+            <group>
+              <group>
+
+                <field name="session_id"/>
+                <field name="set_count"/>
+                <field name='reps_count'/>
+                <field name='weight'/>
+                <field name='is_done' widget='boolean_toggle'/>
+              </group>
+              <group>
+              </group>
+            </group>
+          </sheet>
+
+          <div class="oe_chatter">
+            <field name="message_follower_ids" />
+            <field name="message_ids" />
+          </div>
+
+        </form>
+      </field>
+    </record>
+
+    <record id="view_workout_set_kanban" model="ir.ui.view">
+      <field name="name">workout.set.kanban</field>
+      <field name="model">workout.set</field>
+      <field name="arch" type="xml">
+        <kanban create="0">
+          <templates>
+            <t t-name="kanban-box">
+              <div class="oe_kanban_global_click">
+                <div t-attf-class="o_kanban_card_header">
+                  <div class="o_kanban_card_header_title">
+                    <div class="o_primary h2">
+                      <field name="event_id"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="oe_kanban_details o_kanban_card_content" t-if="!selection_mode">
+                  <div class="row">
+                    <div class="col-6 o_kanban_primary_left">
+                      <div class="row h2">
+                        <span>
+                          <span class="fa fa-hashtag me-2" aria-label="Set #" title="Set #"/>
+                          <field name="set_count"/>
+                        </span>
+                      </div>
+                      <div class="row h2">
+                        <span>
+                          <span class="fa fa-repeat me-2" aria-label="Reps" title="Reps"/>
+                          <field name="reps_count"/>
+                        </span>
+                      </div>
+                      <div class="row h2">
+                        <span>
+                          <span class="oi oi-view-list me-2" aria-label="Weight" title="Weight"/>
+                          <field name="weight"/>
+ lbs
+                        </span>
+                      </div>
+
+                    </div>
+                    <div class="col-6 o_kanban_primary_right">
+                      <div class="row h1">
+                        <field name="is_done" widget='boolean_toggle'/>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </t>
+          </templates>
+
+
+        </kanban>
+      </field>
+    </record>
+
+    <record id="workout_set_view_search" model="ir.ui.view">
+            <field name="name">workout.set.search</field>
+            <field name="model">workout.set</field>
+            <field name="arch" type="xml">
+                <search string="Search Set">
+                    <filter string="My Session Today" name="my_session" domain="[('session_date', '=', context_today().strftime('%Y-%m-%d')),('create_uid', '=', uid)]"/>
+
+                    <group expand="0" string="Group By">
+                        <filter name="event_id" domain="[]" context="{'group_by': 'event_id'}" />
+                        <filter name="is_done" domain="[]" context="{'group_by': 'is_done'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+
+
+
+    <record id="view_workout_set_muscle_group" model="ir.ui.view">
+      <field name="name">workout.musclegroup.tree</field>
+      <field name="model">workout.musclegroup</field>
+      <field name="arch" type="xml">
+        <tree string="Muscle Group" editable="bottom">
+          <field name="sequence" widget="handle"/>
+          <field name="name" optional="show" />
+          <!-- <field name="body_part" optional="show" /> -->
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_workout_equipment_tree" model="ir.ui.view">
+      <field name="name">workout.equipment.tree</field>
+      <field name="model">workout.equipment</field>
+      <field name="arch" type="xml">
+        <tree string="Equipment">
+          <field name="sequence" widget="handle"/>
+          <field name="name" optional="show" />
+          <!-- <field name='body_part' optional="show" /> -->
+
+          <field name='muscle_group_target_ids' optional="show" widget='many2many_tags'/>
+
+
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_workout_equipment_form" model="ir.ui.view">
+      <field name="name">workout.equipment.form</field>
+      <field name="model">workout.equipment</field>
+      <field name="arch" type="xml">
+        <form string="Equipment">
+          <sheet>
+            <div class="oe_title">
+              <h1>
+                <field name='name' />
+              </h1>
+            </div>
+            <group>
+              <group>
+                <!-- <field name="body_part"/> -->
+                <field name='muscle_group_target_ids' widget='many2many_tags'/>
+                <field name="equipment_adjustment_ids"/>
+              </group>
+              <group>
+              </group>
+            </group>
+          </sheet>
+
+          <div class="oe_chatter">
+            <field name="message_follower_ids" />
+            <field name="message_ids" />
+          </div>
+
+        </form>
+      </field>
+    </record>
+
+
+
+
+    <record id="view_res_partner_form_inherit" model="ir.ui.view">
+      <field name="name">res.partner.form</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form" />
+      <field name="arch" type="xml">
+
+        <field name="category_id" position="after">
+          <field name="is_exerciser" widget='boolean_toggle'/>
+        </field>
+      </field>
+    </record>
+
+
+
+
+
+    <record id="view_workout_event_template_tree" model="ir.ui.view">
+      <field name="name">workout.event.template.tree</field>
+      <field name="model">workout.event.template</field>
+      <field name="arch" type="xml">
+        <tree string="Event Template">
+          <field name="sequence" widget="handle"/>
+          <field name="exerciser_id" optional="show" />
+          <field name="equipment_id" optional="show" />
+          <field name='exercise_type_id' optional="show" />
+          <field name='set_ids' optional="show" widget='many2many_tags'/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_workout_event_template_form" model="ir.ui.view">
+      <field name="name">workout.event.template.form</field>
+      <field name="model">workout.event.template</field>
+      <field name="arch" type="xml">
+        <form string="Template">
+          <sheet>
+            <!-- <div class="oe_title">
+              <h1>
+                <field name='name' />
+              </h1>
+            </div> -->
+            <group>
+              <field name="exerciser_id" class='oe_inline'/>
+              <field name='equipment_id' class='oe_inline'/>
+              <field name='exercise_type_id' class='oe_inline'/>
+
+              <field name="set_ids">
+                <tree editable="bottom">
+                  <field name='set_count'/>
+                  <field name='reps_count'/>
+                  <field name='weight'/>
+                  <!-- <field name='exercise_id'/> -->
+                </tree>
+              </field>
+            </group>
+          </sheet>
+
+          <div class="oe_chatter">
+            <field name="message_follower_ids" />
+            <field name="message_ids" />
+          </div>
+
+        </form>
+      </field>
+    </record>
+  </data>
+</odoo>

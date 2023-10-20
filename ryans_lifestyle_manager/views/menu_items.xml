@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- <record model="ir.actions.act_window" id="main_dashboard_action">
+            <field name="name">Dashboard</field>
+            <field name="res_model">dashboard.dashboard</field>
+            <field name="view_mode">form,pivot,kanban</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No Dashboard yet! Coming soon...
+                </p>
+            </field> 
+        </record> -->
+
+        <!-- <record model="ir.actions.act_window" id="loan_tree_action">
+            <field name="name">Loan</field>
+            <field name="res_model">finance.loan</field>
+            <field name="view_mode">tree,form,pivot</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No Loans!
+                </p>
+            </field>
+        </record> -->
+
+        
+        <!-- <menuitem name="Lifestyle"
+                  id="menu_lifestyle"
+                  sequence="1"/> -->
+
+        <!-- <menuitem name="Dashboard"
+                  id="menu_lifestyle_dashboard" 
+                  parent="menu_lifestyle"
+                  sequence="5"
+                  action="main_dashboard_action"/> -->
+        
+        
+
+    </data>
+</odoo>

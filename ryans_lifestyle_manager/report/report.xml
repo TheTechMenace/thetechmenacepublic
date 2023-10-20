@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- DEPRECATED -->
+
+<!-- <odoo>
+    <template id="report_invoice_inherit" inherit_id="account.report_invoice_document">
+
+        <!-- <xpath expr="//div[@id='total']//table//t//tr[@id='amount_table']" position="after"> -->
+        <xpath expr="//div[@id='total']//span[@id='amount_table_residual']" position="replace">
+            <t t-if='o.total_owing_after_discount == 0'>
+                <span t-esc="'%.2f'% o.amount_residual"/>
+            </t>
+            <t t-if='o.total_owing_after_discount != 0'>
+                <t t-if='(o.amount_residual - (o.amount_total_signed - o.total_owing_after_discount)) &lt;= 0'>
+                    $ 0.00
+                </t>
+                <t t-if='(o.amount_residual - (o.amount_total_signed - o.total_owing_after_discount)) &gt; 0'>
+                $
+                    <!-- <t t-esc='o.total_owing_after_discount'/> -->
+                    <span t-esc="'%.2f'% (o.amount_residual - (o.amount_total_signed - o.total_owing_after_discount))" />
+                </t>
+
+            </t>
+        </xpath>
+        <xpath expr="//div[@id='total']//t" position="after">
+            <t t-if="o.check_if_discount_zero()">
+                <tr>
+                    <td>
+                        <strong>Total Owing After Discount</strong>
+                        <!-- <t t-esc='o.total_owing_after_discount - o.amount_total_signed'/> -->
+                    </td>
+                    <td class="text-right">
+                    $
+                        <t t-esc= "'%.2f'% o.total_owing_after_discount" />
+                    </td>
+                </tr>
+            </t>
+        </xpath>
+
+
+    </template>
+</odoo> -->

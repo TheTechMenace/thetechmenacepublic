@@ -1,0 +1,138 @@
+<odoo>
+    <data>
+
+        <record model="ir.actions.act_window" id="action_workout_sessions">
+            <field name="name">Sessions</field>
+            <field name="res_model">workout.session</field>
+            <field name="view_mode">tree,form,pivot</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No Sessions yet!
+                </p>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_workout_events">
+            <field name="name">Events</field>
+            <field name="res_model">workout.event</field>
+            <field name="view_mode">tree,form,pivot</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No Events yet!
+                </p>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_workout_sets">
+            <field name="name">Sets</field>
+            <field name="res_model">workout.set</field>
+            <field name="view_mode">kanban,form,tree,graph,pivot</field>
+            <field name="context">{'search_default_event_id':1, 'search_default_my_session':1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No Sets yet!
+                </p>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_workout_equipment">
+            <field name="name">Equipment</field>
+            <field name="res_model">workout.equipment</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No Equipment yet!
+                </p>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_workout_exercise_types">
+            <field name="name">Exercise Types</field>
+            <field name="res_model">workout.exercise.type</field>
+            <field name="view_mode">tree</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No Exercises Types yet!
+                </p>
+            </field>
+        </record>
+
+
+
+        <record model="ir.actions.act_window" id="action_workout_muscle_groups">
+            <field name="name">Muscle Groups</field>
+            <field name="res_model">workout.musclegroup</field>
+            <field name="view_mode">tree</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No Muscle Groups yet!
+                </p>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_workout_event_templates">
+            <field name="name">Event Templates</field>
+            <field name="res_model">workout.event.template</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html"> 
+                <p class="o_view_nocontent_smiling_face">
+                    No Event Templates yet!
+                </p>
+            </field>
+        </record>
+
+        <menuitem name="Workout"
+        id="menu_workout"
+        web_icon="workout_module,static/description/workout_icon.png"
+        sequence="1"/>
+
+        <menuitem name="Sessions"
+        id="menu_workout_sessions" 
+        parent="menu_workout"
+        sequence="5"
+        action="action_workout_sessions"/>
+
+        <menuitem name="Event"
+        id="menu_workout_event" 
+        parent="menu_workout"
+        sequence="10"
+        action="action_workout_events"/>
+
+        <menuitem name="Sets"
+        id="menu_workout_sets" 
+        parent="menu_workout"
+        sequence="15"
+        action="action_workout_sets"/>
+
+        <menuitem name="Configuration"
+        id="menu_workout_config" 
+        parent="menu_workout"
+        sequence="100"/>
+
+        <menuitem name="Equipment"
+        id="menu_workout_config_equipment" 
+        parent="menu_workout_config"
+        sequence="105"
+        action="action_workout_equipment"/>
+
+        <menuitem name="Exercise Types"
+        id="menu_workout_config_exercise_types" 
+        parent="menu_workout_config"
+        sequence="110"
+        action="action_workout_exercise_types"/>
+
+        <menuitem name="Muscle Groups"
+        id="menu_workout_config_muscle_groups" 
+        parent="menu_workout_config"
+        sequence="115"
+        action="action_workout_muscle_groups"/>
+
+        <menuitem name="Event Templates"
+        id="menu_workout_config_event_templates" 
+        parent="menu_workout_config"
+        sequence="115"
+        action="action_workout_event_templates"/>
+
+    </data>
+
+</odoo>  

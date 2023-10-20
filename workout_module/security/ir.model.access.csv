@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_workout_session_admin,access_workout_session_admin,model_workout_session,base.group_user,1,1,1,1
+access_workout_event_admin,access_workout_event_admin,model_workout_event,base.group_user,1,1,1,1
+access_workout_exercise_type_admin,access_workout_exercise_type_admin,model_workout_exercise_type,base.group_user,1,1,1,1
+access_workout_set_admin,access_workout_set_admin,model_workout_set,base.group_user,1,1,1,1
+access_workout_musclegroup_admin,access_workout_musclegroup_admin,model_workout_musclegroup,base.group_user,1,1,1,1
+access_workout_equipment_admin,access_workout_equipment_admin,model_workout_equipment,base.group_user,1,1,1,1
+access_workout_equipment_adjustment_admin,access_workout_equipment_adjustment_admin,model_workout_equipment_adjustment,base.group_user,1,1,1,1
+access_workout_event_template,access_workout_event_template,model_workout_event_template,base.group_user,1,1,1,1
+access_workout_set_template,access_workout_set_template,model_workout_set_template,base.group_user,1,1,1,1
+access_workout_session_wizard,access_workout_session_wizard,model_workout_session_wizard,base.group_user,1,1,1,1

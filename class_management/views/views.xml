@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="classroom_assignment_view_tree" model="ir.ui.view">
+            <field name="name">classroom.assignment.tree</field>
+            <field name="model">classroom.assignment</field>
+            <field name="arch" type="xml">
+                <tree string="Assignments" multi_edit="true">
+                    <field name="name" optional="show"/>
+                    <field name="due_date" optional="show"/>
+                    <field name="class_id" optional="show"/>
+                    <field name='unit_id' optional='show'/>
+                    <!-- widget="many2many_tags" options="{'color_field': 'colour'}"/> -->
+
+                    <field name="weighting" optional="show" sum="Sum of Assignment Weighting" widget="percentage"/>
+                    <field name="total" optional="show"/>
+
+                    <field name="average" optional="show" widget="percentage" avg="Average of Class Average"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="classroom_assignment_view_form" model="ir.ui.view">
+            <field name="name">classroom.assignment.form</field>
+            <field name="model">classroom.assignment</field>
+            <field name="arch" type="xml">
+                <form string="Assignments">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name='name' />
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name='grades_generated' invisible="1"/>
+                                <field name='sequence'/>
+                                <field name='weighting' widget="percentage"/>
+                                <field name="total"/>
+                            </group>
+                            <group>
+                                <field name='unit_id'/>
+
+                                <field name='class_id' attrs="{'readonly': [('grades_generated', '=', True)]}"/>
+                                <field name='due_date'/>
+                                <field name='average' widget="percentage" />
+
+                                <button string="Generate Grades" type="object" name="create_grades_from_assignment" class="oe_highlight" attrs="{'invisible': [('grades_generated', '=', True)]}"/>
+
+                            </group>
+
+                        </group>
+                        <field name='grade_ids' />
+
+                        <!-- <field name='grade_ids' readonly="0">
+                            <tree readonly="0">
+                                <field name='student_id' optional='show'/>
+                                <field name='score' optional='show'/>
+                                <field name='total' optional='show' readonly="1"/>
+                                <field name='percent' optional='show' widget='percentage'/>
+                            </tree>
+                        </field> -->
+                    </sheet>
+
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" />
+                        <field name="message_ids" />
+                    </div>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="classroom_assignment_view_calendar" model="ir.ui.view">
+            <field name="name">classroom.assignment.calendar</field>
+            <field name="model">classroom.assignment</field>
+            <field name="arch" type="xml">
+                <calendar date_start="due_date"/>
+            </field>
+        </record>
+
+        <record id="classroom_assignment_view_pivot" model="ir.ui.view">
+            <field name="name">classroom.assignment.pivot</field>
+            <field name="model">classroom.assignment</field>
+            <field name="arch" type="xml">
+                <pivot string="Assignment Analysis">
+                    <field name="name" type="row"/>
+                    <field name="class_id" type="col"/>
+                    <field name="stored_average" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+
+        <record id="classroom_assignment_view_search" model="ir.ui.view">
+            <field name="name">classroom.assignment.search</field>
+            <field name="model">classroom.assignment</field>
+            <field name="arch" type="xml">
+                <search string="Search Assignments">
+                    <field name="name" />
+                    <field name="class_id" />
+                    <field name="unit_id" />
+
+                    <group expand="0" string="Group By">
+                        <filter name="name" domain="[]" context="{'group_by': 'name'}" />
+                        <filter name="class_id" domain="[]" context="{'group_by': 'class_id'}" />
+                        <filter name="due_date" domain="[]" context="{'group_by': 'due_date'}" />
+                        <filter name="unit_id" domain="[]" context="{'group_by': 'unit_id'}" />
+
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="classroom_class_view_tree" model="ir.ui.view">
+            <field name="name">classroom.class.tree</field>
+            <field name="model">classroom.class</field>
+            <field name="arch" type="xml">
+                <tree string="Classes" multi_edit="true">
+                    <field name="name" optional="show"/>
+                    <field name='teacher_id' optional="show" widget='many2one_avatar'/>
+                    <field name='average' optional="show" widget='percentage'/>
+
+                    <field name="colour" optional="show" widget='color_picker'/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="classroom_class_view_form" model="ir.ui.view">
+            <field name="name">classroom.class.form</field>
+            <field name="model">classroom.class</field>
+            <field name="arch" type="xml">
+                <form string="Classes">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name='name' />
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name='teacher_id' widget='many2one_avatar'/>
+                                <field name="colour" widget='color_picker'/>
+                                <field name='average' widget='percentage'/>
+
+                            </group>
+                            <group>
+                            </group>
+
+                        </group>
+                        <field name='student_ids' widget='many2many'/>
+                    </sheet>
+
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" />
+                        <field name="message_ids" />
+                    </div>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="classroom_class_view_search" model="ir.ui.view">
+            <field name="name">classroom.class.search</field>
+            <field name="model">classroom.class</field>
+            <field name="arch" type="xml">
+                <search string="Search Classes">
+                    <field name="name" />
+                    <field name="teacher_id" />
+
+                    <group expand="0" string="Group By">
+                        <filter name="name" domain="[]" context="{'group_by': 'name'}" />
+                        <filter name="teacher_id" domain="[]" context="{'group_by': 'teacher_id'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="classroom_grade_view_tree" model="ir.ui.view">
+            <field name="name">classroom.grade.tree</field>
+            <field name="model">classroom.grade</field>
+            <field name="arch" type="xml">
+                <tree string="Grades" editable='top' multi_edit="true">
+
+                    <field name="name" optional="show"/>
+                    <field name="assignment_id" optional="hide"/>
+                    <field name='unit_id' optional='hide'/>
+                    <field name="due_date" optional="hide"/>
+                    <field name="student_id" optional="show"/>
+
+                    <field name="score" optional="show"/>
+                    <field name="total" optional="show"/>
+                    <field name="percent" optional="show" widget="percentage"/>
+                    <field name="weighting" optional="show" widget='percentage'/>
+                    <field name="grade_status" optional="show"/>
+                    <field name="is_excused" optional="show"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="classroom_grade_view_pivot" model="ir.ui.view">
+            <field name="name">classroom.grade.pivot</field>
+            <field name="model">classroom.grade</field>
+            <field name="arch" type="xml">
+                <pivot string="Grade Analysis">
+                    <field name="student_id" type="row"/>
+                    <field name="grade_status" type="col"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="classroom_grade_view_search" model="ir.ui.view">
+            <field name="name">classroom.grade.search</field>
+            <field name="model">classroom.grade</field>
+            <field name="arch" type="xml">
+                <search string="Search Grades">
+                    <field name="name" />
+                    <field name="student_id" />
+                    <field name='unit_id'/>
+
+                    <filter string="Late Assignments" name="late" domain="[('due_date', '&lt;', context_today().strftime('%Y-%m-%d')), ('grade_status', '=', 'not_submitted')]"/>
+                    <group expand="0" string="Group By">
+                        <filter name="name" domain="[]" context="{'group_by': 'name'}" />
+                        <filter name="student_id" domain="[]" context="{'group_by': 'student_id'}" />
+                        <filter name="due_date" domain="[]" context="{'group_by': 'due_date'}" />
+                        <filter name="grade_status" domain="[]" context="{'group_by': 'grade_status'}" />
+                        <filter name="unit_id" domain="[]" context="{'group_by': 'unit_id'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- No reason to have a form view on this view, entry will be done view list view -->
+        <!-- <record id="classroom_grade_view_form" model="ir.ui.view">
+            <field name="name">classroom.grade.form</field>
+            <field name="model">classroom.grade</field>
+            <field name="arch" type="xml">
+                <form string="Grades">
+                    <header>
+                        <field name="grade_status" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name='name' />
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name='sequence'/>
+                                <field name='due_date'/>
+                                <field name='average'/>
+                                <field name='weighting'/>
+                            </group>
+                            <group>
+                                <field name='class_ids'/>
+                            </group>
+
+                        </group>
+                         <field name='grade_ids'/>
+                    </sheet>
+
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" />
+                        <field name="message_ids" />
+                    </div>
+
+                </form>
+            </field>
+        </record> -->
+
+        <record id="classroom_student_view_tree" model="ir.ui.view">
+            <field name="name">classroom.student.tree</field>
+            <field name="model">classroom.student</field>
+            <field name="arch" type="xml">
+                <tree string="Students" multi_edit="true">
+                    <field name="name" optional="show"/>
+                    <field name="class_id" optional="show"/>
+                    <field name="average" optional="show" widget='percentage'/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="classroom_student_view_form" model="ir.ui.view">
+            <field name="name">classroom.student.form</field>
+            <field name="model">classroom.student</field>
+            <field name="arch" type="xml">
+                <form string="Student">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name='name' />
+                            </h1>
+                        </div>
+                        <group>
+                            <field name='class_id'/>
+                            <field name='average' widget='percentage'/>
+
+                        </group>
+                        <field name='grade_ids'/>
+
+                        <!-- <group>
+                            <field name='teacher_id' widget='many2one_avatar'/>
+                        </group> -->
+                        <!-- <notebook>
+                            <page name='Grades'>
+                            </page>
+                            <page name='Classes'>
+                                <field name='class_ids' widget='one2many'/>
+                            </page>
+                        </notebook> -->
+                    </sheet>
+
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" />
+                        <field name="message_ids" />
+                    </div>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="classroom_student_view_pivot" model="ir.ui.view">
+            <field name="name">classroom.student.student</field>
+            <field name="model">classroom.student</field>
+            <field name="arch" type="xml">
+                <pivot string="Student Analysis">
+                    <field name="name" type="row"/>
+                    <field name="class_id" type="col"/>
+                    <field name="stored_average" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="classroom_student_view_search" model="ir.ui.view">
+            <field name="name">classroom.student.search</field>
+            <field name="model">classroom.student</field>
+            <field name="arch" type="xml">
+                <search string="Search Students">
+                    <field name="name" />
+                    <field name="class_id" />
+
+                    <group expand="0" string="Group By">
+                        <filter name="name" domain="[]" context="{'group_by': 'name'}" />
+                        <filter name="class_id" domain="[]" context="{'group_by': 'class_id'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+
+        <record id="classroom_unit_view_tree" model="ir.ui.view">
+            <field name="name">classroom.unit.tree</field>
+            <field name="model">classroom.unit</field>
+            <field name="arch" type="xml">
+                <tree string="Units" multi_edit="true" editable='bottom'>
+                    <field name="sequence" widget="handle"/>
+                    <field name="name" optional="show"/>
+                    <field name="date_unit_start" optional="show"/>
+                    <field name="date_unit_end" optional="show"/>
+
+
+                    <!-- <field name="class_id" optional="show"/>
+                    <field name="average" optional="show" widget='percentage'/> -->
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="classroom_unit_view_form" model="ir.ui.view">
+            <field name="name">classroom.unit.form</field>
+            <field name="model">classroom.unit</field>
+            <field name="arch" type="xml">
+                <form string="Student">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name='name' />
+                            </h1>
+                        </div>
+                        <!-- <group>
+                            <field name='class_id'/>
+                            <field name='average' widget='percentage'/>
+
+                        </group>
+                        <field name='grade_ids'/> -->
+
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

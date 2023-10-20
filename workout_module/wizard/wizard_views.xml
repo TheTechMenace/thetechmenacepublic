@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form View -->
+        <record model="ir.ui.view" id="workout_session_wizard_form_view">
+            <field name="name">workout.session.wizard.form</field>
+            <field name="model">workout.session.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Template Selector">
+                    <p class="oe_grey">
+                        Select your Workout Template
+                    </p>
+                    <group>
+                        <field name="workout_template_ids" widget='many2many'/>
+                    </group>
+                    <footer>
+                        <button name="generate_workout" type="object" string="Generate Workout" class="oe_highlight"/>
+                        <!-- <button name="create_invoice" type="object" string="Create Invoice"/> -->
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="launch_workout_session_template_wizard" model="ir.actions.act_window">
+            <field name="name">Workout Sessions Template</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">workout.session.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="workout_session_wizard_form_view"/>
+            <field name="target">new</field>
+        </record>  
+    </data>
+</odoo>

@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_classroom_assignment_admin,access_classroom_assignment_admin,model_classroom_assignment,base.group_user,1,1,1,1
+access_classroom_class_admin,access_classroom_class_admin,model_classroom_class,base.group_user,1,1,1,1
+access_classroom_grade_admin,access_classroom_grade_admin,model_classroom_grade,base.group_user,1,1,1,1
+access_classroom_student_admin,access_classroom_student_admin,model_classroom_student,base.group_user,1,1,1,1
+access_classroom_unit_admin,access_classroom_unit_admin,model_classroom_unit,base.group_user,1,1,1,1

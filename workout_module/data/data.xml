@@ -1,0 +1,37 @@
+<odoo>
+    <record id="workout_equipment_leg_press" model="workout.equipment">
+        <field name="name">Leg Press</field>
+        <!-- <field name="body_part">legs</field> -->
+    </record>
+
+    <record id="workout_equipment_dumbbells" model="workout.equipment">
+        <field name="name">Dumbbells</field>
+        <!-- <field name="body_part">body_part</field> -->
+    </record>
+
+    <record id="workout_equipment_barbells" model="workout.equipment">
+        <field name="name">Barbells</field>
+        <!-- <field name="body_part">body_part</field> -->
+    </record>
+</odoo>
+<!-- 
+    <record id="workout_equipment_name" model="workout.equipment">
+        <field name="name">name</field>
+        <field name="body_part">body_part</field>
+    </record>
+
+    <record id="workout_equipment_name" model="workout.equipment">
+        <field name="name">name</field>
+        <field name="body_part">body_part</field>
+    </record>
+
+    <record id="workout_equipment_name" model="workout.equipment">
+        <field name="name">name</field>
+        <field name="body_part">body_part</field>
+    </record>
+
+    <record id="workout_equipment_name" model="workout.equipment">
+        <field name="name">name</field>
+        <field name="body_part">body_part</field>
+    </record>
+</odoo> -->
